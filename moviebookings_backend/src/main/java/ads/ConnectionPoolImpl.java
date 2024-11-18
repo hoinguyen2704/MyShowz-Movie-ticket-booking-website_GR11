@@ -45,11 +45,11 @@ public class ConnectionPoolImpl implements ConnectionPool {
 		// TODO Auto-generated method stub
 		if (this.pool.isEmpty()) {
 			// Khoi tao ket noi moi
-			System.out.print(objectName + " have created a new Connection.");
+			System.out.print(objectName + " have created a new Connection.\n");
 			return DriverManager.getConnection(this.url, this.username, this.password);
 		} else {
 			// Lay ket noi da duoc luu tru
-			System.out.print(objectName + " have popped the Connection.");
+			System.out.print(objectName + " have popped the Connection.\n");
 			return this.pool.pop();
 		}
 	}
@@ -58,7 +58,7 @@ public class ConnectionPoolImpl implements ConnectionPool {
 	public void releaseConnection(Connection con, String objectName) throws SQLException {
 		// TODO Auto-generated method stub
 		// Thu hoi lai ket noi
-		System.out.print(objectName + " have pushed the Connection.");
+		System.out.print(objectName + " have pushed the Connection.\n");
 		this.pool.push(con);
 	}
 	

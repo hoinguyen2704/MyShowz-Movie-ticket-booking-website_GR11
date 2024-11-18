@@ -1,93 +1,93 @@
 package ads.movie;
 
+import ads.basic.BasicImpl;
+import ads.object.MovieObject;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import ads.object.MovieObject;
-import ads.basic.*;
-
 public class MovieImpl extends BasicImpl implements movie {
 
-	public MovieImpl() {
-		super("movie");
-	}
+    public MovieImpl() {
+        super("movie");
+    }
 
-	@Override
-	public boolean addMovie(MovieObject item) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    public static void main(String[] args) {
 
-	@Override
-	public boolean editMovie(MovieObject item) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+        MovieImpl movieImpl = new MovieImpl(); // Tạo đối tượng MovieImpl
 
-	@Override
-	public boolean delMovie(MovieObject item) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+        try (Scanner sc = new Scanner(System.in)) {
+            System.out.print("\nInput movie name: "); // Yêu cầu người dùng nhập tên bộ phim
+            String input = sc.nextLine();
 
-	@Override
-	public ArrayList<ResultSet> getMovies(String multiSelect) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+            // Tìm kiếm bộ phim theo tên
+            ResultSet rs = movieImpl.getMovie(input);
 
-	@Override
-	public ArrayList<ResultSet> getMovies(MovieObject similar, int at, byte total) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+            try {
+                if (rs != null) {
+                    // Duyệt qua kết quả và in ra thông tin bộ phim
+                    while (rs.next()) {
+                        String movieName = rs.getString("movie_title");
+                        String movieDescription = rs.getString("movie_description");
+                        int movieDuration = rs.getInt("movie_duration");
 
-	@Override
-	public ResultSet getMovie(String movie_name) {
-		String sql = "SELECT * FROM tbltmovies WHERE movie_title LIKE ?";
+                        System.out.println("Movie Name: " + movieName);
+                        System.out.println("Description: " + movieDescription);
+                        System.out.println("Duration: " + movieDuration + " minutes");
+                    }
+                } else {
+                    System.out.println("No movie found with that name.");
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (rs != null) {
+                        rs.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
-		return this.get(sql, "%" + movie_name + "%");
-	}
+    @Override
+    public boolean addMovie(MovieObject item) {
+        // TODO Auto-generated method stub
+        return false;
+    }
 
-	public static void main(String[] args) {
+    @Override
+    public boolean editMovie(MovieObject item) {
+        // TODO Auto-generated method stub
+        return false;
+    }
 
-		MovieImpl movieImpl = new MovieImpl(); // Tạo đối tượng MovieImpl
+    @Override
+    public boolean delMovie(MovieObject item) {
+        // TODO Auto-generated method stub
+        return false;
+    }
 
-		try (Scanner sc = new Scanner(System.in)) {
-			System.out.print("\nInput movie name: "); // Yêu cầu người dùng nhập tên bộ phim
-			String input = sc.nextLine();
+    @Override
+    public ArrayList<ResultSet> getMovies(String multiSelect) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-			// Tìm kiếm bộ phim theo tên
-			ResultSet rs = movieImpl.getMovie(input);
+    @Override
+    public ArrayList<ResultSet> getMovies(MovieObject similar, int at, byte total) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-			try {
-				if (rs != null) {
-					// Duyệt qua kết quả và in ra thông tin bộ phim
-					while (rs.next()) {
-						String movieName = rs.getString("movie_title");
-						String movieDescription = rs.getString("movie_description");
-					int movieDuration = rs.getInt("movie_duration");
+    @Override
+    public ResultSet getMovie(String movie_name) {
+        String sql = "SELECT * FROM tbltmovies WHERE movie_title LIKE ?";
 
-						System.out.println("Movie Name: " + movieName);
-						System.out.println("Description: " + movieDescription);
-						System.out.println("Duration: " + movieDuration + " minutes");
-					}
-				} else {
-					System.out.println("No movie found with that name.");
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				try {
-					if (rs != null) {
-						rs.close();
-					}
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	}
+        return this.get(sql, "%" + movie_name + "%");
+    }
 }
