@@ -8,97 +8,147 @@ CREATE TABLE tbltcustomers (
     customer_email VARCHAR(100) NOT NULL UNIQUE,
     customer_password VARCHAR(255) NOT NULL,
     customer_phone VARCHAR(15) NOT NULL DEFAULT '',
+    customer_date_of_birth DATE, 
+    customer_gender ENUM('Male', 'Female', 'Other'),
     customer_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     customer_is_active TINYINT DEFAULT 1
 );
 
 -- Thêm 20 bản ghi cho bảng tbltcustomers
-INSERT INTO tbltcustomers (customer_name, customer_email, customer_password, customer_phone) VALUES
-('John Doe', 'johndoe@example.com', 'hashed_password', '1234567890'),
-('Jane Smith', 'janesmith@example.com', 'hashed_password', '0987654321'),
-('Alice Johnson', 'alice.johnson@example.com', 'hashed_password', '1122334455'),
-('Bob Brown', 'bob.brown@example.com', 'hashed_password', '2233445566'),
-('Charlie Davis', 'charlie.davis@example.com', 'hashed_password', '3344556677'),
-('Diana Evans', 'diana.evans@example.com', 'hashed_password', '4455667788'),
-('Edward Wilson', 'edward.wilson@example.com', 'hashed_password', '5566778899'),
-('Fiona Moore', 'fiona.moore@example.com', 'hashed_password', '6677889900'),
-('George Lee', 'george.lee@example.com', 'hashed_password', '7788990011'),
-('Hannah White', 'hannah.white@example.com', 'hashed_password', '8899001122'),
-('Ivy Clark', 'ivy.clark@example.com', 'hashed_password', '9900112233'),
-('Jack King', 'jack.king@example.com', 'hashed_password', '1011122333'),
-('Katherine Scott', 'katherine.scott@example.com', 'hashed_password', '1213142434'),
-('Leo Harris', 'leo.harris@example.com', 'hashed_password', '1314152535'),
-('Mia Allen', 'mia.allen@example.com', 'hashed_password', '1415162636'),
-('Noah Thomas', 'noah.thomas@example.com', 'hashed_password', '1516172737'),
-('Olivia Young', 'olivia.young@example.com', 'hashed_password', '1617182838'),
-('Paul Adams', 'paul.adams@example.com', 'hashed_password', '1718192939'),
-('Quincy Baker', 'quincy.baker@example.com', 'hashed_password', '1819203030'),
-('Rachel Wilson', 'rachel.wilson@example.com', 'hashed_password', '1920213131');
+INSERT INTO tbltcustomers (customer_name, customer_email, customer_password, customer_phone, customer_date_of_birth, customer_gender)
+VALUES
+('Nguyen Van A', 'nguyenvana@example.com', 'password123', '0123456789', '1985-01-01', 'Male'),
+('Tran Thi B', 'tranthib@example.com', 'password123', '0123456790', '1990-02-02', 'Female'),
+('Le Van C', 'levanc@example.com', 'password123', '0123456791', '1995-03-03', 'Male'),
+('Pham Thi D', 'phamthid@example.com', 'password123', '0123456792', '1980-04-04', 'Female'),
+('Hoang Van E', 'hoangvane@example.com', 'password123', '0123456793', '1988-05-05', 'Male'),
+('Vo Thi F', 'vothif@example.com', 'password123', '0123456794', '1992-06-06', 'Female'),
+('Ngo Van G', 'ngovang@example.com', 'password123', '0123456795', '1986-07-07', 'Male'),
+('Dao Thi H', 'daothih@example.com', 'password123', '0123456796', '1994-08-08', 'Female'),
+('Ho Van I', 'hovani@example.com', 'password123', '0123456797', '1987-09-09', 'Male'),
+('Ly Thi J', 'lythij@example.com', 'password123', '0123456798', '1991-10-10', 'Female'),
+('Tran Van K', 'tranvank@example.com', 'password123', '0123456799', '1983-11-11', 'Male'),
+('Ngo Thi L', 'ngothil@example.com', 'password123', '0123456800', '1989-12-12', 'Female'),
+('Bui Van M', 'buivanm@example.com', 'password123', '0123456801', '1981-01-13', 'Male'),
+('Pham Thi N', 'phamthin@example.com', 'password123', '0123456802', '1993-02-14', 'Female'),
+('Vu Van O', 'vuvano@example.com', 'password123', '0123456803', '1984-03-15', 'Male'),
+('Do Thi P', 'dothip@example.com', 'password123', '0123456804', '1996-04-16', 'Female'),
+('Nguyen Van Q', 'nguyenvanq@example.com', 'password123', '0123456805', '1982-05-17', 'Male'),
+('Tran Thi R', 'tranthir@example.com', 'password123', '0123456806', '1997-06-18', 'Female'),
+('Le Van S', 'levans@example.com', 'password123', '0123456807', '1986-07-19', 'Male'),
+('Vo Thi T', 'vothit@example.com', 'password123', '0123456808', '1998-08-20', 'Female');
+
+CREATE TABLE tbladmins (
+    admin_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    admin_name VARCHAR(100) NOT NULL,
+    admin_email VARCHAR(100) NOT NULL UNIQUE,
+    admin_password VARCHAR(255) NOT NULL,
+    admin_phone VARCHAR(15) NOT NULL DEFAULT '',
+    admins_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    admins_is_active TINYINT DEFAULT 1
+);
+
+-- Thêm 20 bản ghi cho bảng tbladmins
+INSERT INTO tbladmins (admin_name, admin_email, admin_password, admin_phone)
+VALUES
+('Admin One', 'adminone@example.com', 'adminpass123', '0123456789'),
+('Admin Two', 'admintwo@example.com', 'adminpass123', '0123456790'),
+('Admin Three', 'adminthree@example.com', 'adminpass123', '0123456791'),
+('Admin Four', 'adminfour@example.com', 'adminpass123', '0123456792'),
+('Admin Five', 'adminfive@example.com', '0123456793', 'adminpass123'),
+('Admin Six', 'adminsix@example.com', 'adminpass123', '0123456794'),
+('Admin Seven', 'adminseven@example.com', 'adminpass123', '0123456795'),
+('Admin Eight', 'admineight@example.com', 'adminpass123', '0123456796'),
+('Admin Nine', 'adminnine@example.com', 'adminpass123', '0123456797'),
+('Admin Ten', 'adminten@example.com', 'adminpass123', '0123456798'),
+('Admin Eleven', 'admineleven@example.com', 'adminpass123', '0123456799'),
+('Admin Twelve', 'admintwelve@example.com', 'adminpass123', '0123456800'),
+('Admin Thirteen', 'adminthirteen@example.com', 'adminpass123', '0123456801'),
+('Admin Fourteen', 'adminfourteen@example.com', 'adminpass123', '0123456802'),
+('Admin Fifteen', 'adminfifteen@example.com', 'adminpass123', '0123456803'),
+('Admin Sixteen', 'adminsixteen@example.com', 'adminpass123', '0123456804'),
+('Admin Seventeen', 'adminseventeen@example.com', 'adminpass123', '0123456805'),
+('Admin Eighteen', 'admineighteen@example.com', 'adminpass123', '0123456806'),
+('Admin Nineteen', 'adminnineteen@example.com', 'adminpass123', '0123456807'),
+('Admin Twenty', 'admintwenty@example.com', 'adminpass123', '0123456808');
 
 -- Tạo bảng tbltmovies (Phim)
 CREATE TABLE tbltmovies (
     movie_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     movie_title VARCHAR(255) NOT NULL,
     movie_description TEXT,
+	movie_rating DECIMAL(3,2) CHECK (movie_Rating BETWEEN 0 AND 10),
     movie_duration INT NOT NULL,  -- Thời gian phim tính bằng phút
     movie_trailer_url VARCHAR(255),
-    movie_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    movie_release_date DATE,
+    movie_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    movie_main_actor TEXT NOT NULL,
+    movie_director VARCHAR(100) NOT NULL,
+    movie_studio VARCHAR(100) NOT NULL,
+    movie_country VARCHAR(100) NOT NULL,
+    movie_genre VARCHAR(100) NOT NULL,
+    movie_for_age INT NOT NULL,
+    movie_poster_url VARCHAR(255)
 );
 
 -- Thêm 20 bản ghi cho bảng tbltmovies
-INSERT INTO tbltmovies (movie_title, movie_description, movie_duration, movie_trailer_url) VALUES
-('Avengers: Endgame', 'The Avengers assemble to defeat Thanos.', 181, 'https://www.youtube.com/watch?v=TcMBFSGVi1c'),
-('The Lion King', 'The adventure of Simba, a lion cub.', 118, 'https://www.youtube.com/watch?v=7TavVZMewpY'),
-('Frozen II', 'Elsa and Anna’s journey to uncover the secrets of their past.', 103, 'https://www.youtube.com/watch?v=Zi4LMpSKP3o'),
-('Spider-Man: No Way Home', 'Spider-Man teams up with his counterparts from other dimensions.', 148, 'https://www.youtube.com/watch?v=JfVOs4VgS5g'),
-('Joker', 'A story about the man who became the Joker.', 122, 'https://www.youtube.com/watch?v=zAGVQLHvwOY'),
-('Batman v Superman', 'Batman and Superman battle each other over their differences.', 151, 'https://www.youtube.com/watch?v=0WWzgGyAH6Y'),
-('The Dark Knight', 'Batman faces off against the Joker in Gotham City.', 152, 'https://www.youtube.com/watch?v=EXeTwQWrcwY'),
-('Inception', 'A skilled thief is tasked with planting an idea in someone’s mind.', 148, 'https://www.youtube.com/watch?v=YoHD9XEInc0'),
-('Interstellar', 'A team of astronauts travels through a wormhole to save humanity.', 169, 'https://www.youtube.com/watch?v=Lm8p5rlrSkY'),
-('Titanic', 'A love story set aboard the doomed Titanic ship.', 195, 'https://www.youtube.com/watch?v=kVrqfYjkTdQ'),
-('Avatar', 'A paraplegic Marine on an alien planet helps the Na’vi people fight back.', 162, 'https://www.youtube.com/watch?v=5PSNL1qE6VY'),
-('Toy Story 4', 'The toys go on a new adventure with their new friend, Forky.', 100, 'https://www.youtube.com/watch?v=wmiIUN-7qhE'),
-('The Matrix', 'A hacker learns that the world is controlled by machines.', 136, 'https://www.youtube.com/watch?v=vKQi3bBA1y8'),
-('Guardians of the Galaxy', 'A group of misfits must work together to save the universe.', 121, 'https://www.youtube.com/watch?v=d96cjJhvlMA'),
-('Doctor Strange', 'A former surgeon becomes the Sorcerer Supreme to protect the Earth.', 115, 'https://www.youtube.com/watch?v=1vQ12a8xJSY'),
-('Shazam!', 'A boy can turn into an adult superhero by saying the word "Shazam".', 132, 'https://www.youtube.com/watch?v=4vJcOCmPU8I'),
-('Wonder Woman', 'Diana, an Amazonian princess, becomes Wonder Woman to fight for justice.', 141, 'https://www.youtube.com/watch?v=INoLV1qszfw'),
-('Deadpool', 'A former soldier becomes the mercenary known as Deadpool.', 108, 'https://www.youtube.com/watch?v=Fy2BqQRqZGo'),
-('The Avengers', 'A team of superheroes assemble to save Earth from Loki.', 143, 'https://www.youtube.com/watch?v=eOrNdBpGMv8'),
-('Captain Marvel', 'Carol Danvers becomes Captain Marvel to fight against a galactic war.', 123, 'https://www.youtube.com/watch?v=Z1BCujX3pw8'),
-('Thor', 'Thor, the god of thunder, must prove himself worthy to wield his magical hammer.', 115, 'https://www.youtube.com/watch?v=JOddp-nlNvQ');
+INSERT INTO tbltmovies (movie_title, movie_description, movie_rating, movie_duration, movie_trailer_url, movie_release_date, movie_main_actor, movie_director, movie_studio, movie_country, movie_genre, movie_for_age, movie_poster_url)
+VALUES
+('Avengers: Endgame',	 'The Avengers assemble to defeat Thanos.',8.8, 181, 'https://www.youtube.com/watch?v=TcMBFSGVi1c', '2010-07-16', 'Leonardo DiCaprio', 'Christopher Nolan', 'Warner Bros.', 'USA', 'Sci-Fi', 13, 'https://example.com/inception_poster.jpg'),
+('The Lion King',		 'The adventure of Simba, a lion cub.',8.7, 118, 'https://www.youtube.com/watch?v=7TavVZMewpY', '1999-03-31', 'Keanu Reeves', 'The Wachowskis', 'Warner Bros.', 'USA', 'Action', 16, 'https://example.com/matrix_poster.jpg'),
+('Thor',				 'Thor, the god of thunder, must prove himself worthy to wield his magical hammer.',2.5, 115, 'https://www.youtube.com/watch?v=JOddp-nlNvQ', '2014-11-07', 'Matthew McConaughey', 'Christopher Nolan', 'Paramount Pictures', 'USA', 'Sci-Fi', 13, 'https://example.com/interstellar_poster.jpg'),
+('Captain Marvel',		 'Carol Danvers becomes Captain Marvel to fight against a galactic war.',9.0, 123, 'https://www.youtube.com/watch?v=Z1BCujX3pw8', '2009-12-18', 'Sam Worthington', 'James Cameron', '20th Century Fox', 'USA', 'Adventure', 13, 'https://example.com/avatar_poster.jpg'),
+('The Avengers',		 'A team of superheroes assemble to save Earth from Loki.',9.9, 143, 'https://www.youtube.com/watch?v=eOrNdBpGMv8', '2008-07-18', 'Christian Bale', 'Christopher Nolan', 'Warner Bros.', 'USA', 'Action', 13, 'https://example.com/darkknight_poster.jpg'),
+('Deadpool',			 'A former soldier becomes the mercenary known as Deadpool.',9.9, 108, 'https://www.youtube.com/watch?v=Fy2BqQRqZGo', '1997-12-19', 'Leonardo DiCaprio', 'James Cameron', '20th Century Fox', 'USA', 'Drama', 13, 'https://example.com/titanic_poster.jpg'),
+('Wonder Woman',		 'Diana, an Amazonian princess, becomes Wonder Woman to fight for justice.',2.4, 141, 'https://www.youtube.com/watch?v=INoLV1qszfw', '1993-06-11', 'Sam Neill', 'Steven Spielberg', 'Universal Pictures', 'USA', 'Adventure', 13, 'https://example.com/jurassicpark_poster.jpg'),
+('Shazam!',				 'A boy can turn into an adult superhero by saying the word "Shazam".',6.8, 132, 'https://www.youtube.com/watch?v=4vJcOCmPU8I', '1994-06-24', 'Matthew Broderick', 'Roger Allers', 'Walt Disney', 'USA', 'Animation', 0, 'https://example.com/lionking_poster.jpg'),
+('Doctor Strange',		 'A former surgeon becomes the Sorcerer Supreme to protect the Earth.',2.5, 115, 'https://www.youtube.com/watch?v=1vQ12a8xJSY', '1972-03-24', 'Marlon Brando', 'Francis Ford Coppola', 'Paramount Pictures', 'USA', 'Crime', 16, 'https://example.com/godfather_poster.jpg'),
+('Guardians of the Galaxy', 'A group of misfits must work together to save the universe.',5.5, 121, 'https://www.youtube.com/watch?v=d96cjJhvlMA', '1994-10-14', 'Tim Robbins', 'Frank Darabont', 'Columbia Pictures', 'USA', 'Drama', 16, 'https://example.com/shawshank_poster.jpg'),
+('The Matrix',			 'A hacker learns that the world is controlled by machines.',9.9, 136, 'https://www.youtube.com/watch?v=vKQi3bBA1y8', '1994-07-06', 'Tom Hanks', 'Robert Zemeckis', 'Paramount Pictures', 'USA', 'Drama', 13, 'https://example.com/forrestgump_poster.jpg'),
+('Toy Story 4',			 'The toys go on a new adventure with their new friend, Forky.',9.4, 100, 'https://www.youtube.com/watch?v=wmiIUN-7qhE', '2000-05-05', 'Russell Crowe', 'Ridley Scott', 'DreamWorks', 'USA', 'Action', 16, 'https://example.com/gladiator_poster.jpg'),
+('The Dark Knight', 'Batman faces off against the Joker in Gotham City.', 2.5, 152, 'https://www.youtube.com/watch?v=EXeTwQWrcwY', '1998-07-24', 'Tom Hanks', 'Steven Spielberg', 'DreamWorks', 'USA', 'War', 16, 'https://example.com/savingprivateryan_poster.jpg'),
+('Batman v Superman', 'Batman and Superman battle each other over their differences.',3.5, 151, 'https://www.youtube.com/watch?v=0WWzgGyAH6Y', '1995-05-24', 'Mel Gibson', 'Mel Gibson', 'Paramount Pictures', 'USA', 'History', 16, 'https://example.com/braveheart_poster.jpg'),
+('Joker', 'A story about the man who became the Joker.',3.5, 122, 'https://www.youtube.com/watch?v=zAGVQLHvwOY', '1993-12-15', 'Liam Neeson', 'Steven Spielberg', 'Universal Pictures', 'USA', 'Biography', 16, 'https://example.com/schindlerslist_poster.jpg'),
+('Inception', 'A skilled thief is tasked with planting an idea in someone’s mind.',1.5, 148, 'https://www.youtube.com/watch?v=YoHD9XEInc0', '1999-10-15', 'Brad Pitt', 'David Fincher', '20th Century Fox', 'USA', 'Drama', 18, 'https://example.com/fightclub_poster.jpg'),
+('Interstellar', 'A team of astronauts travels through a wormhole to save humanity.',5.5, 169, 'https://www.youtube.com/watch?v=Lm8p5rlrSkY', '1999-12-10', 'Tom Hanks', 'Frank Darabont', 'Warner Bros.', 'USA', 'Crime', 16, 'https://example.com/greenmile_poster.jpg'),
+('Titanic', 'A love story set aboard the doomed Titanic ship.',7.7, 195, 'https://www.youtube.com/watch?v=kVrqfYjkTdQ', '2022-12-16', 'Sam Worthington', 'James Cameron', '20th Century Studios', 'USA', 'Sci-Fi', 13, 'https://example.com/avatar2_poster.jpg'),
+('Avatar', 'A paraplegic Marine on an alien planet helps the Na’vi people fight back.',3.3, 162, 'https://www.youtube.com/watch?v=5PSNL1qE6VY', '2012-05-04', 'Robert Downey Jr.', 'Joss Whedon', 'Marvel Studios', 'USA', 'Action', 13, 'https://example.com/avengers_poster.jpg'),
+('Frozen II', 'Elsa and Anna’s journey to uncover the secrets of their past.',6.6, 103, 'https://www.youtube.com/watch?v=Zi4LMpSKP3o', '2013-11-27', 'Kristen Bell', 'Chris Buck', 'Walt Disney Animation Studios', 'USA', 'Animation', 0, 'https://example.com/frozen_poster.jpg');
 
 -- Tạo bảng tbltrooms (Phòng chiếu)
 CREATE TABLE tbltrooms (
     room_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     room_name VARCHAR(50) NOT NULL,  -- Tên phòng chiếu (Screen 1, Screen 2, v.v.)
     room_capacity INT NOT NULL,  -- Số ghế trong phòng
+    room_location VARCHAR(255),
+    room_screen_type ENUM('2D', '3D', 'IMAX', '4DX'),
+    room_sound_system VARCHAR(100),
     room_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Thêm 20 bản ghi cho bảng tbltrooms
-INSERT INTO tbltrooms (room_name, room_capacity) VALUES
-('Screen 1', 150),
-('Screen 2', 120),
-('Screen 3', 100),
-('Screen 4', 180),
-('Screen 5', 120),
-('Screen 6', 100),
-('Screen 7', 150),
-('Screen 8', 200),
-('Screen 9', 170),
-('Screen 10', 150),
-('Screen 11', 180),
-('Screen 12', 200),
-('Screen 13', 100),
-('Screen 14', 130),
-('Screen 15', 140),
-('Screen 16', 160),
-('Screen 17', 180),
-('Screen 18', 150),
-('Screen 19', 120),
-('Screen 20', 160);
+INSERT INTO tbltrooms (room_name, room_capacity, room_screen_type, room_sound_system)
+VALUES
+('Screen 1', 150, 'IMAX', 'Dolby Atmos'),
+('Screen 2', 100, '4DX', 'THX'),
+('Screen 3', 200, '3D', 'Dolby Digital'),
+('Screen 4', 120, '2D', 'DTS:X'),
+('Screen 5', 180, 'IMAX', 'Auro 11.1'),
+('Screen 6', 130, '3D', 'Dolby Atmos'),
+('Screen 7', 160, '4DX', 'IMAX 12-channel'),
+('Screen 8', 140, '2D', 'Sony Dynamic Digital Sound'),
+('Screen 9', 110, '3D', 'THX'),
+('Screen 10', 170, 'IMAX', 'Dolby Digital'),
+('Screen 11', 150, '4DX', 'Dolby Atmos'),
+('Screen 12', 90, '2D', 'Auro 11.1'),
+('Screen 13', 200, '3D', 'DTS:X'),
+('Screen 14', 130, 'IMAX', 'THX'),
+('Screen 15', 120, '4DX', 'Sony Dynamic Digital Sound'),
+('Screen 16', 140, '2D', 'Dolby Digital'),
+('Screen 17', 160, '3D', 'IMAX 12-channel'),
+('Screen 18', 180, 'IMAX', 'Dolby Atmos'),
+('Screen 19', 100, '2D', 'THX'),
+('Screen 20', 190, '3D', 'DTS:X');
 
 -- Tạo bảng tbltseats (Ghế ngồi)
 CREATE TABLE tbltseats (
@@ -106,50 +156,34 @@ CREATE TABLE tbltseats (
     room_id BIGINT NOT NULL,
     seat_row CHAR(3) NOT NULL, -- R1, R2, ..., R10
     seat_column CHAR(3) NOT NULL, -- S1, S2, ..., S10
+    seat_type ENUM('Standard', 'Premium', 'VIP'),
     seat_status ENUM('available', 'reserved', 'booked') DEFAULT 'available',
     FOREIGN KEY (room_id) REFERENCES tbltrooms(room_id) ON DELETE CASCADE
 );
 
 -- Thêm dữ liệu mẫu cho bảng tbltseats
-INSERT INTO tbltseats (room_id, seat_row, seat_column) VALUES
--- R1
-(1, 'R1', 'S1'), (1, 'R1', 'S2'), (1, 'R1', 'S3'), (1, 'R1', 'S4'),
-(1, 'R1', 'S5'), (1, 'R1', 'S6'), (1, 'R1', 'S7'), (1, 'R1', 'S8'),
-(1, 'R1', 'S9'), (1, 'R1', 'S10'),
--- R2
-(1, 'R2', 'S1'), (1, 'R2', 'S2'), (1, 'R2', 'S3'), (1, 'R2', 'S4'),
-(1, 'R2', 'S5'), (1, 'R2', 'S6'), (1, 'R2', 'S7'), (1, 'R2', 'S8'),
-(1, 'R2', 'S9'), (1, 'R2', 'S10'),
--- R3
-(1, 'R3', 'S1'), (1, 'R3', 'S2'), (1, 'R3', 'S3'), (1, 'R3', 'S4'),
-(1, 'R3', 'S5'), (1, 'R3', 'S6'), (1, 'R3', 'S7'), (1, 'R3', 'S8'),
-(1, 'R3', 'S9'), (1, 'R3', 'S10'),
--- R4 (Bỏ R4-S9, R4-S10)
-(1, 'R4', 'S1'), (1, 'R4', 'S2'), (1, 'R4', 'S3'), (1, 'R4', 'S4'),
-(1, 'R4', 'S5'), (1, 'R4', 'S6'), (1, 'R4', 'S7'), (1, 'R4', 'S8'),
--- R5
-(1, 'R5', 'S1'), (1, 'R5', 'S2'), (1, 'R5', 'S3'), (1, 'R5', 'S4'),
-(1, 'R5', 'S5'), (1, 'R5', 'S6'), (1, 'R5', 'S7'), (1, 'R5', 'S8'),
-(1, 'R5', 'S9'), (1, 'R5', 'S10'),
--- R6
-(1, 'R6', 'S1'), (1, 'R6', 'S2'), (1, 'R6', 'S3'), (1, 'R6', 'S4'),
-(1, 'R6', 'S5'), (1, 'R6', 'S6'), (1, 'R6', 'S7'), (1, 'R6', 'S8'),
-(1, 'R6', 'S9'), (1, 'R6', 'S10'),
--- R7
-(1, 'R7', 'S1'), (1, 'R7', 'S2'), (1, 'R7', 'S3'), (1, 'R7', 'S4'),
-(1, 'R7', 'S5'), (1, 'R7', 'S6'), (1, 'R7', 'S7'), (1, 'R7', 'S8'),
-(1, 'R7', 'S9'), (1, 'R7', 'S10'),
--- R8
-(1, 'R8', 'S1'), (1, 'R8', 'S2'), (1, 'R8', 'S3'), (1, 'R8', 'S4'),
-(1, 'R8', 'S5'), (1, 'R8', 'S6'), (1, 'R8', 'S7'), (1, 'R8', 'S8'),
-(1, 'R8', 'S9'), (1, 'R8', 'S10'),
--- R9
-(1, 'R9', 'S1'), (1, 'R9', 'S2'), (1, 'R9', 'S3'), (1, 'R9', 'S4'),
-(1, 'R9', 'S5'), (1, 'R9', 'S6'), (1, 'R9', 'S7'), (1, 'R9', 'S8'),
-(1, 'R9', 'S9'), (1, 'R9', 'S10'),
--- R10 (Bỏ R10-S1, R10-S2, R10-S9, R10-S10)
-(1, 'R10', 'S3'), (1, 'R10', 'S4'), (1, 'R10', 'S5'), (1, 'R10', 'S6'),
-(1, 'R10', 'S7'), (1, 'R10', 'S8');
+INSERT INTO tbltseats (room_id, seat_row, seat_column, seat_type, seat_status)
+VALUES
+(1, 'R1', 'S1', 'Standard', 'available'),
+(1, 'R1', 'S2', 'Standard', 'available'),
+(1, 'R2', 'S1', 'Premium', 'reserved'),
+(1, 'R2', 'S2', 'Premium', 'booked'),
+(2, 'R1', 'S1', 'VIP', 'available'),
+(2, 'R1', 'S2', 'VIP', 'available'),
+(2, 'R2', 'S1', 'Standard', 'reserved'),
+(2, 'R2', 'S2', 'Standard', 'booked'),
+(3, 'R1', 'S1', 'Premium', 'available'),
+(3, 'R1', 'S2', 'Premium', 'available'),
+(3, 'R2', 'S1', 'VIP', 'reserved'),
+(3, 'R2', 'S2', 'VIP', 'booked'),
+(4, 'R1', 'S1', 'Standard', 'available'),
+(4, 'R1', 'S2', 'Standard', 'available'),
+(4, 'R2', 'S1', 'Premium', 'reserved'),
+(4, 'R2', 'S2', 'Premium', 'booked'),
+(5, 'R1', 'S1', 'VIP', 'available'),
+(5, 'R1', 'S2', 'VIP', 'available'),
+(5, 'R2', 'S1', 'Standard', 'reserved'),
+(5, 'R2', 'S2', 'Standard', 'booked');
 
 -- Tạo bảng tbltshowtimes (Lịch chiếu)
 CREATE TABLE tbltshowtimes (
@@ -167,27 +201,29 @@ CREATE TABLE tbltshowtimes (
 );
 
 -- Thêm 20 bản ghi cho bảng tbltshowtimes
-INSERT INTO tbltshowtimes (movie_id, room_id, show_date, start_time, end_time, ticket_price) VALUES
-(1, 1, '2024-01-01', '14:00:00', '17:00:00', 10.00),
-(2, 2, '2024-01-01', '16:00:00', '18:00:00', 12.00),
-(3, 3, '2024-01-01', '18:00:00', '20:00:00', 15.00),
-(4, 4, '2024-01-02', '13:00:00', '15:30:00', 12.00),
-(5, 5, '2024-01-02', '16:00:00', '18:00:00', 14.00),
-(6, 6, '2024-01-02', '18:30:00', '20:30:00', 15.00),
-(7, 7, '2024-01-03', '14:30:00', '17:00:00', 13.00),
-(8, 8, '2024-01-03', '17:30:00', '19:30:00', 16.00),
-(9, 9, '2024-01-03', '20:00:00', '22:00:00', 18.00),
-(10, 10, '2024-01-04', '15:00:00', '17:00:00', 10.00),
-(11, 11, '2024-01-04', '16:30:00', '18:30:00', 12.00),
-(12, 12, '2024-01-04', '19:00:00', '21:00:00', 14.00),
-(13, 13, '2024-01-05', '14:00:00', '16:00:00', 16.00),
-(14, 14, '2024-01-05', '16:30:00', '18:30:00', 17.00),
-(15, 15, '2024-01-06', '13:00:00', '15:00:00', 18.00),
-(16, 16, '2024-01-06', '15:30:00', '17:30:00', 19.00),
-(17, 17, '2024-01-06', '18:00:00', '20:00:00', 15.00),
-(18, 18, '2024-01-07', '14:00:00', '16:00:00', 14.00),
-(19, 19, '2024-01-07', '16:30:00', '18:30:00', 13.00),
-(20, 20, '2024-01-07', '19:00:00', '21:00:00', 20.00);
+INSERT INTO tbltshowtimes (movie_id, room_id, show_date, start_time, end_time, ticket_price)
+VALUES
+(1, 1, '2024-12-01', '18:00:00', '20:30:00', 150000),
+(1, 2, '2024-12-01', '21:00:00', '23:30:00', 150000),
+(2, 1, '2024-12-02', '14:00:00', '16:10:00', 120000),
+(2, 2, '2024-12-02', '16:30:00', '18:40:00', 120000),
+(3, 3, '2024-12-03', '10:00:00', '13:00:00', 180000),
+(3, 4, '2024-12-03', '13:30:00', '16:30:00', 180000),
+(4, 5, '2024-12-04', '19:00:00', '21:42:00', 150000),
+(4, 6, '2024-12-04', '22:00:00', '00:42:00', 150000),
+(5, 7, '2024-12-05', '17:00:00', '19:32:00', 150000),
+(5, 8, '2024-12-05', '20:00:00', '22:32:00', 150000),
+(6, 9, '2024-12-06', '09:00:00', '12:15:00', 200000),
+(6, 10, '2024-12-06', '12:45:00', '16:00:00', 200000),
+(7, 11, '2024-12-07', '14:00:00', '16:07:00', 120000),
+(7, 12, '2024-12-07', '16:30:00', '18:37:00', 120000),
+(8, 13, '2024-12-08', '13:00:00', '14:58:00', 100000),
+(8, 14, '2024-12-08', '15:30:00', '17:28:00', 100000),
+(9, 15, '2024-12-09', '18:00:00', '20:55:00', 180000),
+(9, 16, '2024-12-09', '21:30:00', '00:25:00', 180000),
+(10, 17, '2024-12-10', '11:00:00', '13:30:00', 150000),
+(10, 18, '2024-12-10', '14:00:00', '16:30:00', 150000);
+
 
 -- Tạo bảng tbltbookings (Đặt vé)
 CREATE TABLE tbltbookings (
@@ -201,27 +237,29 @@ CREATE TABLE tbltbookings (
 );
 
 -- Thêm 20 bản ghi cho bảng tbltbookings
-INSERT INTO tbltbookings (customer_id, showtime_id, total_price) VALUES
-(1, 1, 30.00),
-(2, 2, 24.00),
-(3, 3, 45.00),
-(4, 4, 34.00),
-(5, 5, 28.00),
-(6, 6, 30.00),
-(7, 7, 39.00),
-(8, 8, 32.00),
-(9, 9, 36.00),
-(10, 10, 22.00),
-(11, 11, 24.00),
-(12, 12, 28.00),
-(13, 13, 30.00),
-(14, 14, 33.00),
-(15, 15, 37.00),
-(16, 16, 38.00),
-(17, 17, 35.00),
-(18, 18, 28.00),
-(19, 19, 32.00),
-(20, 20, 40.00);
+INSERT INTO tbltbookings (customer_id, showtime_id, total_price)
+VALUES
+(1, 1, 150000.00),
+(2, 2, 150000.00),
+(3, 3, 120000.00),
+(4, 4, 120000.00),
+(5, 5, 150000.00),
+(6, 6, 150000.00),
+(7, 7, 120000.00),
+(8, 8, 120000.00),
+(9, 9, 150000.00),
+(10, 10, 150000.00),
+(11, 11, 200000.00),
+(12, 12, 200000.00),
+(13, 13, 120000.00),
+(14, 14, 120000.00),
+(15, 15, 100000.00),
+(16, 16, 100000.00),
+(17, 17, 180000.00),
+(18, 18, 180000.00),
+(19, 19, 150000.00),
+(20, 20, 150000.00);
+
 
 -- Tạo bảng tbltbooking_seats (Ghế đã chọn trong vé)
 CREATE TABLE tbltbooking_seats (
@@ -233,24 +271,59 @@ CREATE TABLE tbltbooking_seats (
 );
 
 -- Thêm 20 bản ghi cho bảng tbltbooking_seats
-INSERT INTO tbltbooking_seats (booking_id, seat_id) VALUES
-(1, 3),
-(2, 1),
-(2, 2),
-(3, 4),
-(4, 5),
-(5, 6),
-(6, 7),
-(7, 8),
-(8, 9),
-(9, 10),
-(10, 11),
-(11, 12),
-(12, 13),
-(13, 14),
-(14, 15),
-(15, 16),
-(16, 17),
-(17, 18),
-(18, 19),
-(19, 20);
+INSERT INTO tbltbooking_seats (booking_id, seat_id)
+VALUES
+(1, 1),
+(1, 2),
+(2, 3),
+(2, 4),
+(3, 5),
+(3, 6),
+(4, 7),
+(4, 8),
+(5, 9),
+(5, 10),
+(6, 11),
+(6, 12),
+(7, 13),
+(7, 14),
+(8, 15),
+(8, 16),
+(9, 17),
+(9, 18),
+(10, 19),
+(10, 20);
+
+CREATE TABLE promotions (
+    promotion_id INT PRIMARY KEY AUTO_INCREMENT,
+    promotion_name VARCHAR(100),
+    promotion_discount_percentage DECIMAL(5,2) CHECK (promotion_discount_percentage BETWEEN 0 AND 100),
+    promotion_start_date DATE,
+    promotion_end_date DATE,
+    promotion_conditions TEXT,
+    Description TEXT
+);
+
+ -- nhâp 20 dữ liệu cho bảng
+INSERT INTO Promotions (promotion_name, promotion_discount_percentage, promotion_start_date, promotion_end_date, promotion_conditions, Description)
+VALUES
+('Summer Sale', 20.00, '2024-06-01', '2024-06-30', 'Applicable to all movies', 'Enjoy 20% off on all movies during summer'),
+('Christmas Special', 30.00, '2024-12-20', '2024-12-25', 'Applicable to selected movies', 'Celebrate Christmas with 30% off on selected movies'),
+('New Year Blast', 25.00, '2024-12-31', '2025-01-01', 'All day discount', 'Ring in the new year with 25% off on all tickets'),
+('Student Discount', 15.00, '2024-09-01', '2024-09-30', 'Valid student ID required', 'Special 15% discount for students'),
+('Weekend Offer', 10.00, '2024-11-01', '2024-11-30', 'Only on weekends', 'Enjoy your weekends with a 10% discount on all movies'),
+('Early Bird', 20.00, '2024-10-01', '2024-10-31', 'Before 12 PM', 'Get 20% off on tickets for shows before noon'),
+('Loyalty Bonus', 15.00, '2024-08-01', '2024-08-31', 'For loyalty card holders', 'Exclusive 15% discount for our loyal customers'),
+('Halloween Spooktacular', 25.00, '2024-10-25', '2024-10-31', 'Applicable to horror movies', 'Get spooked with 25% off on all horror movies'),
+('Family Fun', 20.00, '2024-07-01', '2024-07-31', 'Minimum purchase of 4 tickets', 'Enjoy family time with 20% off when buying 4 or more tickets'),
+('Anniversary Special', 30.00, '2024-04-01', '2024-04-10', 'Applicable to all movies', 'Celebrate our anniversary with a 30% discount on all movies'),
+('Valentine\'s Day', 20.00, '2025-02-14', '2025-02-14', 'Applicable to romantic movies', 'Celebrate love with 20% off on romantic movies'),
+('Back to School', 15.00, '2024-09-01', '2024-09-10', 'Applicable to all movies', 'Kick off the new school year with a 15% discount'),
+('Black Friday', 50.00, '2024-11-29', '2024-11-29', 'Only on Black Friday', 'Get an amazing 50% off on Black Friday'),
+('Cyber Monday', 40.00, '2024-12-02', '2024-12-02', 'Only on Cyber Monday', 'Enjoy 40% off on Cyber Monday'),
+('Mother\'s Day Special', 25.00, '2025-05-11', '2025-05-11', 'Applicable to family movies', 'Celebrate Mother\'s Day with a 25% discount'),
+('Father\'s Day Treat', 25.00, '2025-06-15', '2025-06-15', 'Applicable to family movies', 'Treat dad with 25% off on family movies'),
+('Teacher\'s Appreciation', 20.00, '2024-10-05', '2024-10-05', 'Valid teacher ID required', 'Special 20% discount for teachers'),
+('Veterans Day', 30.00, '2024-11-11', '2024-11-11', 'Applicable to all movies', 'Honoring veterans with a 30% discount'),
+('Independence Day', 20.00, '2024-07-04', '2024-07-04', 'Applicable to all movies', 'Celebrate Independence Day with 20% off'),
+('Spring Festival', 25.00, '2024-03-01', '2024-03-31', 'Applicable to all movies', 'Welcome spring with a 25% discount on all movies');
