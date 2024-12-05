@@ -301,11 +301,11 @@ CREATE TABLE promotions (
     promotion_start_date DATE,
     promotion_end_date DATE,
     promotion_conditions TEXT,
-    Description TEXT
+    promotion_description TEXT
 );
 
  -- nhâp 20 dữ liệu cho bảng
-INSERT INTO Promotions (promotion_name, promotion_discount_percentage, promotion_start_date, promotion_end_date, promotion_conditions, Description)
+INSERT INTO Promotions (promotion_name, promotion_discount_percentage, promotion_start_date, promotion_end_date, promotion_conditions, promotion_description)
 VALUES
 ('Summer Sale', 20.00, '2024-06-01', '2024-06-30', 'Applicable to all movies', 'Enjoy 20% off on all movies during summer'),
 ('Christmas Special', 30.00, '2024-12-20', '2024-12-25', 'Applicable to selected movies', 'Celebrate Christmas with 30% off on selected movies'),
@@ -327,3 +327,34 @@ VALUES
 ('Veterans Day', 30.00, '2024-11-11', '2024-11-11', 'Applicable to all movies', 'Honoring veterans with a 30% discount'),
 ('Independence Day', 20.00, '2024-07-04', '2024-07-04', 'Applicable to all movies', 'Celebrate Independence Day with 20% off'),
 ('Spring Festival', 25.00, '2024-03-01', '2024-03-31', 'Applicable to all movies', 'Welcome spring with a 25% discount on all movies');
+
+CREATE TABLE customer_promotions (
+    customer_promotion_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    customer_id BIGINT NOT NULL,
+    promotion_id BIGINT NOT NULL,
+    used BOOLEAN DEFAULT FALSE, -- Chỉ được sử dụng một lần
+    FOREIGN KEY (customer_id) REFERENCES tbltcustomers(customer_id) ON DELETE CASCADE,
+    FOREIGN KEY (promotion_id) REFERENCES promotions(promotion_id) ON DELETE CASCADE
+);
+INSERT INTO customer_promotions (customer_id, promotion_id, used)
+VALUES
+(1, 1, FALSE),
+(2, 2, FALSE),
+(3, 3, FALSE),
+(4, 4, FALSE),
+(5, 5, FALSE),
+(6, 6, FALSE),
+(7, 7, FALSE),
+(8, 8, FALSE),
+(9, 9, FALSE),
+(10, 10, FALSE),
+(11, 11, FALSE),
+(12, 12, FALSE),
+(13, 13, FALSE),
+(14, 14, FALSE),
+(15, 15, FALSE),
+(16, 16, FALSE),
+(17, 17, FALSE),
+(18, 18, FALSE),
+(19, 19, FALSE),
+(20, 20, FALSE);
