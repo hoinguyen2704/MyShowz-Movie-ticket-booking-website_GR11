@@ -1,8 +1,8 @@
  create database moviebooking_data;
  USE moviebooking_data;
 
--- Tạo bảng tbltcustomers (Người dùng)
-CREATE TABLE tbltcustomers (
+-- Tạo bảng tblcustomers (Người dùng)
+CREATE TABLE tblcustomers (
     customer_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     customer_name VARCHAR(100) NOT NULL,
     customer_email VARCHAR(100) NOT NULL UNIQUE,
@@ -14,8 +14,8 @@ CREATE TABLE tbltcustomers (
     customer_is_active TINYINT DEFAULT 1
 );
 
--- Thêm 20 bản ghi cho bảng tbltcustomers
-INSERT INTO tbltcustomers (customer_name, customer_email, customer_password, customer_phone, customer_date_of_birth, customer_gender)
+-- Thêm 20 bản ghi cho bảng tblcustomers
+INSERT INTO tblcustomers (customer_name, customer_email, customer_password, customer_phone, customer_date_of_birth, customer_gender)
 VALUES
 ('Nguyen Van A', 'nguyenvana@example.com', 'password123', '0123456789', '1985-01-01', 'Male'),
 ('Tran Thi B', 'tranthib@example.com', 'password123', '0123456790', '1990-02-02', 'Female'),
@@ -72,8 +72,8 @@ VALUES
 ('Admin Nineteen', 'adminnineteen@example.com', 'adminpass123', '0123456807'),
 ('Admin Twenty', 'admintwenty@example.com', 'adminpass123', '0123456808');
 
--- Tạo bảng tbltmovies (Phim)
-CREATE TABLE tbltmovies (
+-- Tạo bảng tblmovies (Phim)
+CREATE TABLE tblmovies (
     movie_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     movie_title VARCHAR(255) NOT NULL,
     movie_description TEXT,
@@ -91,8 +91,8 @@ CREATE TABLE tbltmovies (
     movie_poster_url VARCHAR(255)
 );
 
--- Thêm 20 bản ghi cho bảng tbltmovies
-INSERT INTO tbltmovies (movie_title, movie_description, movie_rating, movie_duration, movie_trailer_url, movie_release_date, movie_main_actor, movie_director, movie_studio, movie_country, movie_genre, movie_for_age, movie_poster_url)
+-- Thêm 20 bản ghi cho bảng tblmovies
+INSERT INTO tblmovies (movie_title, movie_description, movie_rating, movie_duration, movie_trailer_url, movie_release_date, movie_main_actor, movie_director, movie_studio, movie_country, movie_genre, movie_for_age, movie_poster_url)
 VALUES
 ('Avengers: Endgame',	 'The Avengers assemble to defeat Thanos.',8.8, 181, 'https://www.youtube.com/watch?v=TcMBFSGVi1c', '2010-07-16', 'Leonardo DiCaprio', 'Christopher Nolan', 'Warner Bros.', 'USA', 'Sci-Fi', 13, 'https://example.com/inception_poster.jpg'),
 ('The Lion King',		 'The adventure of Simba, a lion cub.',8.7, 118, 'https://www.youtube.com/watch?v=7TavVZMewpY', '1999-03-31', 'Keanu Reeves', 'The Wachowskis', 'Warner Bros.', 'USA', 'Action', 16, 'https://example.com/matrix_poster.jpg'),
@@ -115,8 +115,8 @@ VALUES
 ('Avatar', 'A paraplegic Marine on an alien planet helps the Na’vi people fight back.',3.3, 162, 'https://www.youtube.com/watch?v=5PSNL1qE6VY', '2012-05-04', 'Robert Downey Jr.', 'Joss Whedon', 'Marvel Studios', 'USA', 'Action', 13, 'https://example.com/avengers_poster.jpg'),
 ('Frozen II', 'Elsa and Anna’s journey to uncover the secrets of their past.',6.6, 103, 'https://www.youtube.com/watch?v=Zi4LMpSKP3o', '2013-11-27', 'Kristen Bell', 'Chris Buck', 'Walt Disney Animation Studios', 'USA', 'Animation', 0, 'https://example.com/frozen_poster.jpg');
 
--- Tạo bảng tbltrooms (Phòng chiếu)
-CREATE TABLE tbltrooms (
+-- Tạo bảng tblrooms (Phòng chiếu)
+CREATE TABLE tblrooms (
     room_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     room_name VARCHAR(50) NOT NULL,  -- Tên phòng chiếu (Screen 1, Screen 2, v.v.)
     room_capacity INT NOT NULL,  -- Số ghế trong phòng
@@ -126,8 +126,8 @@ CREATE TABLE tbltrooms (
     room_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Thêm 20 bản ghi cho bảng tbltrooms
-INSERT INTO tbltrooms (room_name, room_capacity, room_screen_type, room_sound_system)
+-- Thêm 20 bản ghi cho bảng tblrooms
+INSERT INTO tblrooms (room_name, room_capacity, room_screen_type, room_sound_system)
 VALUES
 ('Screen 1', 150, 'IMAX', 'Dolby Atmos'),
 ('Screen 2', 100, '4DX', 'THX'),
@@ -150,19 +150,19 @@ VALUES
 ('Screen 19', 100, '2D', 'THX'),
 ('Screen 20', 190, '3D', 'DTS:X');
 
--- Tạo bảng tbltseats (Ghế ngồi)
-CREATE TABLE tbltseats (
+-- Tạo bảng tblseats (Ghế ngồi)
+CREATE TABLE tblseats (
     seat_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     room_id BIGINT NOT NULL,
     seat_row CHAR(3) NOT NULL, -- R1, R2, ..., R10
     seat_column CHAR(3) NOT NULL, -- S1, S2, ..., S10
     seat_type ENUM('Standard', 'Premium', 'VIP'),
     seat_status ENUM('available', 'reserved', 'booked') DEFAULT 'available',
-    FOREIGN KEY (room_id) REFERENCES tbltrooms(room_id) ON DELETE CASCADE
+    FOREIGN KEY (room_id) REFERENCES tblrooms(room_id) ON DELETE CASCADE
 );
 
--- Thêm dữ liệu mẫu cho bảng tbltseats
-INSERT INTO tbltseats (room_id, seat_row, seat_column, seat_type, seat_status)
+-- Thêm dữ liệu mẫu cho bảng tblseats
+INSERT INTO tblseats (room_id, seat_row, seat_column, seat_type, seat_status)
 VALUES
 (1, 'R1', 'S1', 'Standard', 'available'),
 (1, 'R1', 'S2', 'Standard', 'available'),
@@ -185,8 +185,8 @@ VALUES
 (5, 'R2', 'S1', 'Standard', 'reserved'),
 (5, 'R2', 'S2', 'Standard', 'booked');
 
--- Tạo bảng tbltshowtimes (Lịch chiếu)
-CREATE TABLE tbltshowtimes (
+-- Tạo bảng tblshowtimes (Lịch chiếu)
+CREATE TABLE tblshowtimes (
     showtime_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     movie_id BIGINT NOT NULL,
     room_id BIGINT NOT NULL,
@@ -196,12 +196,12 @@ CREATE TABLE tbltshowtimes (
     ticket_price DECIMAL(10, 2) NOT NULL,  -- Giá vé cho buổi chiếu
     showtime_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     showtime_updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (movie_id) REFERENCES tbltmovies(movie_id) ON DELETE CASCADE,
-    FOREIGN KEY (room_id) REFERENCES tbltrooms(room_id) ON DELETE CASCADE
+    FOREIGN KEY (movie_id) REFERENCES tblmovies(movie_id) ON DELETE CASCADE,
+    FOREIGN KEY (room_id) REFERENCES tblrooms(room_id) ON DELETE CASCADE
 );
 
--- Thêm 20 bản ghi cho bảng tbltshowtimes
-INSERT INTO tbltshowtimes (movie_id, room_id, show_date, start_time, end_time, ticket_price)
+-- Thêm 20 bản ghi cho bảng tblshowtimes
+INSERT INTO tblshowtimes (movie_id, room_id, show_date, start_time, end_time, ticket_price)
 VALUES
 (1, 1, '2024-12-01', '18:00:00', '20:30:00', 150000),
 (1, 2, '2024-12-01', '21:00:00', '23:30:00', 150000),
@@ -225,19 +225,19 @@ VALUES
 (10, 18, '2024-12-10', '14:00:00', '16:30:00', 150000);
 
 
--- Tạo bảng tbltbookings (Đặt vé)
-CREATE TABLE tbltbookings (
+-- Tạo bảng tblbookings (Đặt vé)
+CREATE TABLE tblbookings (
     booking_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     customer_id BIGINT NOT NULL,
     showtime_id BIGINT NOT NULL,
     total_price DECIMAL(10, 2) NOT NULL,  -- Tổng giá vé
     booking_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (customer_id) REFERENCES tbltcustomers(customer_id) ON DELETE CASCADE,
-    FOREIGN KEY (showtime_id) REFERENCES tbltshowtimes(showtime_id) ON DELETE CASCADE
+    FOREIGN KEY (customer_id) REFERENCES tblcustomers(customer_id) ON DELETE CASCADE,
+    FOREIGN KEY (showtime_id) REFERENCES tblshowtimes(showtime_id) ON DELETE CASCADE
 );
 
--- Thêm 20 bản ghi cho bảng tbltbookings
-INSERT INTO tbltbookings (customer_id, showtime_id, total_price)
+-- Thêm 20 bản ghi cho bảng tblbookings
+INSERT INTO tblbookings (customer_id, showtime_id, total_price)
 VALUES
 (1, 1, 150000.00),
 (2, 2, 150000.00),
@@ -261,17 +261,17 @@ VALUES
 (20, 20, 150000.00);
 
 
--- Tạo bảng tbltbooking_seats (Ghế đã chọn trong vé)
-CREATE TABLE tbltbooking_seats (
+-- Tạo bảng tblbooking_seats (Ghế đã chọn trong vé)
+CREATE TABLE tblbooking_seats (
     booking_seat_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     booking_id BIGINT NOT NULL,
     seat_id BIGINT NOT NULL,
-    FOREIGN KEY (booking_id) REFERENCES tbltbookings(booking_id) ON DELETE CASCADE,
-    FOREIGN KEY (seat_id) REFERENCES tbltseats(seat_id) ON DELETE CASCADE
+    FOREIGN KEY (booking_id) REFERENCES tblbookings(booking_id) ON DELETE CASCADE,
+    FOREIGN KEY (seat_id) REFERENCES tblseats(seat_id) ON DELETE CASCADE
 );
 
--- Thêm 20 bản ghi cho bảng tbltbooking_seats
-INSERT INTO tbltbooking_seats (booking_id, seat_id)
+-- Thêm 20 bản ghi cho bảng tblbooking_seats
+INSERT INTO tblbooking_seats (booking_id, seat_id)
 VALUES
 (1, 1),
 (1, 2),
@@ -331,9 +331,9 @@ VALUES
 CREATE TABLE customer_promotions (
     customer_promotion_id BIGINT PRIMARY KEY AUTO_INCREMENT,
     customer_id BIGINT NOT NULL,
-    promotion_id BIGINT NOT NULL,
+    promotion_id INT NOT NULL,
     used BOOLEAN DEFAULT FALSE, -- Chỉ được sử dụng một lần
-    FOREIGN KEY (customer_id) REFERENCES tbltcustomers(customer_id) ON DELETE CASCADE,
+    FOREIGN KEY (customer_id) REFERENCES tblcustomers(customer_id) ON DELETE CASCADE,
     FOREIGN KEY (promotion_id) REFERENCES promotions(promotion_id) ON DELETE CASCADE
 );
 INSERT INTO customer_promotions (customer_id, promotion_id, used)
